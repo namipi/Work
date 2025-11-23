@@ -1,0 +1,208 @@
+/* 全体のレイアウト調整 */
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  text-align: left; /* ViteのデフォルトCSSのリセット */
+}
+
+.container { padding: 20px; font-family: sans-serif; max-width: 1200px; margin: 0 auto; }
+.panel { background: #f4f4f4; padding: 15px; margin-bottom: 15px; border-radius: 8px; color: #333; }
+.btn-parent { background: #333; color: white; padding: 20px 40px; font-size: 1.2em; cursor: pointer; border: none; border-radius: 8px;}
+.btn-child { background: #007bff; color: white; padding: 20px 40px; font-size: 1.2em; cursor: pointer; border: none; border-radius: 8px;}
+
+.btn-primary { background: #007bff; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 4px; }
+.btn-primary:disabled { background: #ccc; cursor: not-allowed; }
+.btn-start { background: #28a745; color: white; border: none; padding: 10px 20px; cursor: pointer; font-size: 1.2em; border-radius: 4px; }
+.btn-send { background: #6f42c1; color: white; border: none; padding: 10px 20px; cursor: pointer; width: 100%; margin-top: 10px; border-radius: 4px; }
+
+/* ユーザー選択 */
+.user-list { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 10px; }
+.user-card { padding: 10px; border: 2px solid #ddd; cursor: pointer; background: white; border-radius: 4px; color: #333; }
+.user-card.selected { background: #e6f2ff; border-color: #007bff; color: #007bff; font-weight: bold; }
+
+/* シーン2 レイアウト */
+.content-split { display: flex; gap: 20px; }
+@media (max-width: 768px) { .content-split { flex-direction: column; } }
+
+.input-area { flex: 1; background: #f9f9f9; padding: 20px; border-radius: 8px; color: #333; }
+.shared-area { flex: 1; background: #e9ecef; padding: 20px; border-radius: 8px; overflow-y: auto; max-height: 80vh; color: #333; }
+
+/* フォーム */
+form { display: flex; flex-direction: column; gap: 10px; }
+input, select, textarea { padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 1em; }
+textarea { height: 80px; resize: vertical; }
+
+/* カード */
+.card-list { display: flex; flex-direction: column; gap: 10px; }
+.card { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+.card-header { display: flex; justify-content: space-between; border-bottom: 1px solid #eee; padding-bottom: 5px; margin-bottom: 5px; font-weight: bold; }
+.card-name { color: #333; }
+.card-cat { background: #eee; padding: 2px 8px; border-radius: 10px; font-size: 0.8em; color: #555; }
+.card-body p { margin: 5px 0; color: #444; }
+
+.timer { font-size: 1.5em; font-weight: bold; color: #d9534f; margin-left: 20px; }
+
+
+/* スタート画面のレイアウト */
+.role-selection {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.role-card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  text-align: center;
+  width: 300px;
+}
+
+.name-input {
+  width: 80%;
+  padding: 10px;
+  margin: 15px 0;
+  font-size: 1.1em;
+  border: 2px solid #ddd;
+  border-radius: 5px;
+}
+
+.user-name {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 5px;
+}
+.user-id {
+  font-size: 0.8em;
+  color: #888;
+}
+/* --- シーン3: 振り返りモード用 --- */
+
+.review-mode {
+  text-align: center;
+}
+
+.instruction {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+/* カテゴリタブ */
+.category-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.tab-btn {
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  border: 2px solid #ccc;
+  border-radius: 30px;
+  background: white;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: bold;
+}
+
+.tab-btn:disabled {
+  cursor: default;
+  opacity: 0.8;
+}
+
+/* 親PCのみアクティブなタブを目立たせる */
+.tab-btn.active.cat-アイデア { background: #ecc94b; color: #744210; border-color: #ecc94b; transform: scale(1.1); }
+.tab-btn.active.cat-課題 { background: #fc8181; color: white; border-color: #fc8181; transform: scale(1.1); }
+.tab-btn.active.cat-感想 { background: #63b3ed; color: white; border-color: #63b3ed; transform: scale(1.1); }
+
+/* 親PCでカードをクリック可能に見せる */
+.clickable {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.clickable:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.full-width {
+  height: 70vh; /* 高さを広めに */
+}
+
+/* --- モーダル（拡大表示） --- */
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s;
+}
+
+.modal-content {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+  width: 80%;
+  max-width: 600px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  animation: popIn 0.3s;
+  text-align: left;
+  position: relative;
+  border-top: 10px solid #ccc; /* カテゴリ色で上書きされる */
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.modal-cat {
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 5px 15px;
+  background: #eee;
+  border-radius: 20px;
+}
+
+.modal-author {
+  font-size: 1rem;
+  color: #555;
+}
+
+.modal-close {
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  color: #999;
+  line-height: 1;
+}
+
+.modal-body label {
+  display: block;
+  font-size: 0.9rem;
+  color: #888;
+  margin-bottom: 5px;
+}
+
+.modal-body p {
+  font-size: 1.4rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 20px;
+  white-space: pre-wrap;
+}
+
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
